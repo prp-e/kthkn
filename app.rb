@@ -1,3 +1,4 @@
+require 'json'
 require 'sqlite3'
 require 'sinatra'
 
@@ -23,6 +24,10 @@ get '/' do
 end 
 
 post '/' do 
+    shortener = URLShortener.new(params[:url], database)
+    shortened_key = shortener.shorten 
+
+
 end 
 
 get '/:url' do 
