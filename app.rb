@@ -27,7 +27,7 @@ post '/' do
     shortener = URLShortener.new(params[:url], database)
     shortened_key = shortener.shorten 
 
-
+    {:original_url => "#{params[:url]}", :shortened_url => "http://localhost:4567/#{shortened_key}"}.to_json 
 end 
 
 get '/:url' do 
