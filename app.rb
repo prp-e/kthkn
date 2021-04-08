@@ -1,6 +1,12 @@
 require 'sqlite3'
 require 'sinatra'
 
+database = SQLite3::Database.open('database.sqlite3')
+db.execute("CREATE TABLE IF NOT EXISTS trusts(id INTEGER PRIMARY KEY AUTOINCREMENT, original_url TEXT,short_url TEXT")
+
+class URLShortener
+end 
+
 get '/' do 
     'Kootah Nemikonam :))'
 end 
