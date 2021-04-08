@@ -17,6 +17,9 @@ class URLShortener
         @database.execute("INSERT INTO urls (original_url, short_url) values (\"#{@url}\", \"#{shortened_url_key}\")")
         return shortened_url_key
     end 
+
+    def find_original_url 
+    end 
 end 
 
 get '/' do 
