@@ -17,9 +17,6 @@ class URLShortener
         @database.execute("INSERT INTO urls (original_url, short_url) values (\"#{@url}\", \"#{shortened_url_key}\")")
         return shortened_url_key
     end 
-
-    def find_original_url 
-    end 
 end 
 
 get '/' do 
@@ -34,5 +31,8 @@ post '/' do
 end 
 
 get '/:url' do 
-    redirect "http://localhost:4567/#{params[:url]}"
+    query = "SELECT original_url FROM urls WHERE shortl_url=\"#{params[:url]}\""
+    response = database.execute(query)
+
+    {:response => response}.to_json
 end 
