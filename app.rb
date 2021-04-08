@@ -14,7 +14,7 @@ class URLShortener
 
     def shorten
         shortened_url_key = Array.new(8) {KEYS.sample}.join
-        @database.execute("INSERT INTO trusts (url, rating) values (\"#{@url}\", \"#{shortened_url_key}\")")
+        @database.execute("INSERT INTO urls (original_url, short_url) values (\"#{@url}\", \"#{shortened_url_key}\")")
         return shortened_url_key
     end 
 end 
