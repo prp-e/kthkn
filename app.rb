@@ -31,7 +31,7 @@ post '/' do
 end 
 
 get '/:url' do 
-    query = "SELECT original_url FROM urls WHERE shortl_url=\"#{params[:url]}\""
+    query = "SELECT original_url FROM urls WHERE short_url=\"#{params[:url]}\""
     response = database.execute(query)
 
     {:response => response}.to_json
