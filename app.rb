@@ -2,7 +2,7 @@ require 'json'
 require 'sqlite3'
 require 'sinatra'
 
-database = SQLite3::Database.open('database.sqlite3')
+database = SQLite3::Database.open(ENV['kthkn_db'])
 database.execute("CREATE TABLE IF NOT EXISTS urls(id INTEGER PRIMARY KEY AUTOINCREMENT, original_url TEXT,short_url TEXT)")
 KEYS = Array('a' .. 'z') + Array('A'..'Z') + Array('0'..'9')
 
@@ -30,7 +30,7 @@ post '/' do
     shortener = URLShortener.new(params[:url], database)
     shortened_key = shortener.shorten 
 
-    {:original_url => "#{params[:url]}", :shortened_url => "http://localhost:4567/#{shortened_key}"}.to_json 
+    {:original_url => "#{params[:url]}", :shortened_url => "#{ENV['kthkn_domain']}/#{shortened_key}"}.to_json 
 end 
 
 get '/:url' do 
