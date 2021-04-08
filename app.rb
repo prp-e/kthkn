@@ -14,7 +14,7 @@ class URLShortener
 
     def shorten
         if !@url.include?"http" 
-            @url = "http://" + url 
+            @url = "http://" + @url 
         end 
         shortened_url_key = Array.new(8) {KEYS.sample}.join
         @database.execute("INSERT INTO urls (original_url, short_url) values (\"#{@url}\", \"#{shortened_url_key}\")")
