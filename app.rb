@@ -23,7 +23,7 @@ class URLShortener
 end 
 
 before do 
-    @req_data = JSON.parse(request.body.read) 
+    @req_data = request.body.read.to_s
 end   
 
 get '/' do 
@@ -32,10 +32,12 @@ end
 
 post '/' do 
     content_type :json 
-    shortener = URLShortener.new(params[:url], database)
+    request = JSON.parse(@req_data)
+    url = request['url']
+    shortener = URLShortener.new(url, database)
     shortened_key = shortener.shorten 
 
-    {:original_url => "#{params[:url]}", :shortened_url => "#{ENV['kthkn_domain']}/#{shortened_key}"}.to_json 
+    {:original_url => "#{url}", :shortened_url => "#{ENV['kthkn_domain']}/#{shortened_key}"}.to_json 
 end 
 
 get '/:url' do 
