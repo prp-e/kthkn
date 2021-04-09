@@ -22,6 +22,11 @@ class URLShortener
     end 
 end 
 
+set :bind, '0.0.0.0' 
+set :public_folder, 'public' 
+set :protection, except: :frame_options
+set :protection, except: :json_csrf
+
 before do 
     @req_data = request.body.read.to_s
 end   
