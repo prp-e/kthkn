@@ -1,0 +1,75 @@
+openapi: 3.0.0
+info:
+  title: kthkn-api
+  version: '1.0'
+servers:
+  - url: 'http://localhost:4567'
+paths:
+  /:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-main
+    post:
+      summary: ''
+      operationId: post-main
+      responses:
+        '200':
+          $ref: '#/components/responses/Shortened-URL'
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: url
+          description: Just a simple URL (e.g. google.com)
+      description: 'Post data to this endpoint to shorten your URLs. '
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                url:
+                  type: string
+                  minLength: 1
+              required:
+                - url
+            examples: {}
+  '/:id':
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: 'get-:id'
+      description: 'Redirects to the shortened URL. '
+components:
+  schemas:
+    URL:
+      title: URL
+      type: object
+      x-examples:
+        URL example:
+          url: 'http://google.com'
+      properties:
+        url:
+          type: string
+  responses:
+    Shortened-URL:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            description: ''
+            type: object
+            properties:
+              original_url:
+                type: string
+                minLength: 1
+              shortened_url:
+                type: string
+                minLength: 1
+            required:
+              - original_url
+              - shortened_url
