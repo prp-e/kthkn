@@ -27,6 +27,7 @@ get '/' do
 end 
 
 post '/' do 
+    content_type :json 
     shortener = URLShortener.new(params[:url], database)
     shortened_key = shortener.shorten 
 
