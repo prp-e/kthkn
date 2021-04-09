@@ -22,6 +22,10 @@ class URLShortener
     end 
 end 
 
+before do 
+    @req_data = JSON.parse(request.body.read) 
+end   
+
 get '/' do 
     'Kootah Nemikonam :))'
 end 
