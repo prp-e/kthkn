@@ -32,7 +32,7 @@ before do
 end   
 
 get '/' do 
-    'Kootah Nemikonam :))'
+    redirect 'http://kootahkon.ir'
 end 
 
 post '/' do 
